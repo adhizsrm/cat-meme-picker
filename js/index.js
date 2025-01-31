@@ -26,5 +26,8 @@ function renderEmotionsRadio(cats) {
     }
     emotionRadios.innerHTML = str;
 }
+emotionRadios.addEventListener('change',function(e){
+    console.log(e.target.id);
+})
 
 renderEmotionsRadio(catsData);
