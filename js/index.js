@@ -1,4 +1,23 @@
 import { catsData } from "./data.js";
+
+const emotionRadios = document.getElementById('emotion-radios');
+const getImageBtn = document.getElementById('get-image-btn');
+emotionRadios.addEventListener('change', highlightCheckedOption);
+getImageBtn.addEventListener('click',getMatchingCatsArray)
+function renderEmotionsRadio(cats) {
+    const emotionsArray = getEmotionsArray(cats);
+    let str = "";
+    for(let i of emotionsArray) {
+        str += 
+        `
+            <div class="radio">
+                <label for="${i}">${i}</label>
+                <input type="radio" id="${i}" value="${i}" name="emotions" />
+            </div>
+        `;
+    }
+    emotionRadios.innerHTML = str;
+}
 function getEmotionsArray(cats) {
     const emotionsArray = []
     for(let cat of cats) {
@@ -10,10 +29,6 @@ function getEmotionsArray(cats) {
     }
     return emotionsArray;
 }
-
-const emotionRadios = document.getElementById('emotion-radios');
-emotionRadios.addEventListener('change', highlightCheckedOption)
-
 /*
 This function highlights the selected radio button's parent element.
 1. It first removes the 'highlight' class from all elements with the 'radio' class.
@@ -30,22 +45,10 @@ function highlightCheckedOption(e){
     }
     document.getElementById(e.target.id).parentElement.classList.add('highlight');
 }
-function renderEmotionsRadio(cats) {
-    const emotionsArray = getEmotionsArray(cats);
-    let str = "";
-    for(let i of emotionsArray) {
-        str += 
-        `
-            <div class="radio">
-                <label for="${i}">${i}</label>
-                <input type="radio" id="${i}" value="${i}" name="emotions" />
-            </div>
-        `;
-    }
-    emotionRadios.innerHTML = str;
+function getMatchingCatsArray(){
+    const selectedEmotion = document.querySelector('input[type="radio"]:checked').value;
+    console.log(selectedEmotion);
 }
-emotionRadios.addEventListener('change',function(e){
-    console.log(e.target.id);
-})
+
 
 renderEmotionsRadio(catsData);
