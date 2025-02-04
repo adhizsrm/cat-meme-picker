@@ -12,6 +12,14 @@ function getEmotionsArray(cats) {
 }
 
 const emotionRadios = document.getElementById('emotion-radios');
+emotionRadios.addEventListener('change', highlightCheckedOption)
+
+function highlightCheckedOption(e){
+    /*document.querySelectorAll('.radio').forEach(radio => {
+        radio.classList.remove('highlight');
+    });*/
+    document.getElementById(e.target.id).parentElement.classList.add('highlight');
+}
 function renderEmotionsRadio(cats) {
     const emotionsArray = getEmotionsArray(cats);
     let str = "";
