@@ -14,10 +14,20 @@ function getEmotionsArray(cats) {
 const emotionRadios = document.getElementById('emotion-radios');
 emotionRadios.addEventListener('change', highlightCheckedOption)
 
+/*
+This function highlights the selected radio button's parent element.
+1. It first removes the 'highlight' class from all elements with the 'radio' class.
+2. Then, it adds the 'highlight' class to the parent element of the clicked radio button.
+*/
 function highlightCheckedOption(e){
     /*document.querySelectorAll('.radio').forEach(radio => {
         radio.classList.remove('highlight');
     });*/
+
+    const radios = document.getElementsByClassName('radio');
+    for(let radio of radios) {
+        radio.classList.remove('highlight');
+    }
     document.getElementById(e.target.id).parentElement.classList.add('highlight');
 }
 function renderEmotionsRadio(cats) {
