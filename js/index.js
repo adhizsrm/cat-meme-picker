@@ -58,7 +58,13 @@ function getMatchingCatsArray(){
         const isGif = gifsOnlyOption.checked;
         // Filter the catsData array to find cats that match the selected emotion
         const matchingCatsArray = catsData.filter(function(cat){
-            return cat.emotionTags.includes(selectedEmotion);
+            if(isGif == true){
+                return cat.emotionTags.includes(selectedEmotion && cat.isGif);
+            }
+            else {
+                return cat.emotionTags.includes(selectedEmotion);
+            }
+            
         });
         // Log the filtered array of matching cats to the console
         console.log(matchingCatsArray);
